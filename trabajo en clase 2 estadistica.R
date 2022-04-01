@@ -159,5 +159,5 @@ ggpairs(BDD1, lower = list(continuous = "smooth"),diag = list(continuous = "bar"
 ## aqui evidenciamos una alta correlación positiva (0.744) con un alto nivel de significacia
 ## por otro lado, se evidencian altos niveles de correlacion entre las variables numero y inversión en publicidad y numero y ventas
 # no obstante esta correlación anterior no cabe lugar a analisis porque es una variable que cumple con la función de etiqueta
-
+#
 
