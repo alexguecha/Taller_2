@@ -1,0 +1,99 @@
+---
+title: 'Taller #2 - Estadistica para la analítica de datos'
+author: "Sergio Castañeda, Guillermo Castillo, Alexander Guecha"
+date: "19/3/2022"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r cars}
+
+BDD1 = read.table(file.choose(),sep = ";", head = T)
+
+
+```
+
+# Great Plains Roofing & Siding Company
+## Introducción
+
+Great Plains Roofing and Sinding Company Inc., vende productos para techos y recubrimientos de paredes a minoristas en reparación de casas, como Lowe´s y Home Deport y a contratistas comerciales. El propietario desea estudiar el efecto de diversas variables sobre el valor de las tarjetas americanas vendidas (miles de dólares). El gerente de marketing argumenta que la compañía debe gastar más dinero en publicidad, en tanto que un investigador de mercado sugiere que se debe enfocar más en diferenciar su marca y su producto de sus competidores.
+La compañía dividió a Estados Unidos en 26 distritos de marketing. En cada distrito reunió información sobre las siguientes variables: Volumen de Ventas (en miles de dólares), Dólares Gastados en Publicidad, Número de Cuentas Activas, Número de Marcas de Competidores y una Calificación del Potencial del Distrito.
+Los datos obtenidos en una muestra de los 26 distritos en las tiendas Great Plains Roofing and Sinding Company Inc., durante un mes de ventas, se presentan en una base que se adjunta a este documento.
+
+## Informe para los Directivos de la Great Plains Roofing & Sinding Company Inc.
+
+Los directivos de la Great Plains Roofing and Sinding Company Inc. desean emplear esta información acerca de sus clientes para evaluar sus productos y en síntesis, su posicionamiento.
+Con dichos resultados, los directivos tomarán decisiones vitales respecto a sus futuras promociones de cupones y rebajas; además de caracterizar el tipo de clientes que frecuentan sus tiendas.
+
+## Requerimientos Estadísticos para el Informe de los Directivos de la Great Plains Roofing & Sinding Company
+
+Emplee los métodos tabulares, gráficos y numéricos de análisis para ayudar a los directivos de la Great Plains Roofing and Sinding Company Inc., a elaborar un perfil de sus clientes y a evaluar su posicionamiento.
+Proporcione un informe corporativo de las estadísticas del estudio en cuestión. Su informe debe contener los siguientes resultados estadísticos junto con sus interpretaciones y conclusiones generales.
+
+## Variable **Ventas**
+
+```{r}
+library(fBasics)
+basicStats(BDD1$Ventas)
+```
+
+```{r}
+hist(BDD1$Ventas)
+```
+```{r}
+
+library(agricolae)
+par(mfrow=c(1,2),mar=c(4,4,0,1),cex=0.6)
+h1<-graph.freq(BDD1$Ventas, density=6, col="blue",border="red",ylim=c(0,0.6), frequency=2,xlab="Ventas")
+h2<-graph.freq(BDD1$Ventas, border=0,ylim=c(0,0.6), frequency=2,xlab="Ventas")
+polygon.freq(h2,col="blue", frequency=2)
+
+```
+## Variable **Inversión Publicidad**
+
+```{r}
+library(fBasics)
+basicStats(BDD1$InvPub)
+```
+```{r}
+hist(BDD1$InvPub)
+```
+```{r}
+
+library(agricolae)
+par(mfrow=c(1,2),mar=c(4,4,0,1),cex=0.6)
+h1<-graph.freq(BDD1$InvPub, density=6, col="blue",border="red",ylim=c(0,0.3), frequency=2,xlab="Inversión en publicidad")
+h2<-graph.freq(BDD1$InvPub, border=0,ylim=c(0,0.3), frequency=2,xlab="Inversión en publicidad")
+polygon.freq(h2,col="blue", frequency=2)
+
+```
+
+
+## Indicaciones del gerente de marketing
+
+1. Formule un modelo de regresión que pueda ser usado para explicar las ventas, junto con su prueba de utilidad y verificación de supuestos. ¿Se puede concluir que algunas de las variables de este sondeo son útiles para explicar la variación en las ventas? Verifíquelo.
+
+
+```{r}
+library(GGally)
+ggpairs(BDD1, lower = list(continuous = "smooth"),diag = list(continuous = "bar"), axisLabels = "none")
+```
+
+Las variables **Ventas** y **Clasificación potencial del distrito** presenta una alta correlación positiva y es significante, de otra parte se evidencia altos niveles de correlación entre las variables *Nro e inversión publicitaria, no obstante, no cabe lugar a análisis, toda vez que es una variable que cumple función de etiqueta
+
+**Modelo**
+```{r}
+library(GGally)
+ggpairs(BDD1, lower = list(continuous = "smooth"),diag = list(continuous = "bar"), axisLabels = "none")
+```
+
+
+
